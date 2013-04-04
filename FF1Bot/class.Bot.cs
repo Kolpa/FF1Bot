@@ -31,39 +31,6 @@ namespace FF1Bot
 
         #endregion
 
-        #region Dll Wrapper
-
-        private static IntPtr Open(int id)
-        {
-            return OpenProcess(0x1F0FFF, true, id);
-        }
-
-        private static void Close(IntPtr handle)
-        {
-            CloseHandle(handle);
-        }
-
-        private static int Read(IntPtr process, IntPtr adress, int iBytesToRead = 2)
-        {
-            byte[] bytes = new byte[24];
-            uint rw = 0;
-            ReadProcessMemory(process, adress, bytes, (UIntPtr) iBytesToRead, ref rw);
-            int result = BitConverter.ToInt32(bytes, 0);
-            return result;
-        }
-
-        private static IntPtr GetAdress(IntPtr process, IntPtr pointer, uint offset)
-        {
-            byte[] bytes = new byte[24];
-            uint rw = 0;
-            ReadProcessMemory(process, pointer, bytes, (UIntPtr) sizeof (int), ref rw);
-            uint pt = BitConverter.ToUInt32(bytes, 0);
-            IntPtr var = (IntPtr) (pt + offset);
-            return var;
-        }
-
-        #endregion
-
         #region Private Properties
 
         private static readonly Timer Timer = new Timer(100);

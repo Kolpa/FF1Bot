@@ -8,6 +8,8 @@ namespace FF1Bot
     {
         private const string EmulatorProcessName = "fceux";
 
+        private readonly IMemoryReaderFactory _memoryReaderFactory;
+
         #region Private Properties
 
         private static readonly Timer Timer = new Timer(100);
@@ -24,7 +26,11 @@ namespace FF1Bot
 
         #region Constructors
 
-        public Bot() { ShutdownRequested = false; }
+        public Bot(IMemoryReaderFactory memoryReaderFactory)
+        {
+            _memoryReaderFactory = memoryReaderFactory;
+            ShutdownRequested = false;
+        }
 
         #endregion
 

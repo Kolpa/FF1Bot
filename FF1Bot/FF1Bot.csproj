@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class.Bot.cs" />
+    <Compile Include="class.MemoryReaderFactory.cs" />
     <Compile Include="IMemoryReader.cs" />
     <Compile Include="MemoryReader.cs" />
     <Compile Include="Program.cs" />

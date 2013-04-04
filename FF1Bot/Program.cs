@@ -4,7 +4,8 @@
     {
         private static void Main(string[] args)
         {
-            Bot bot = new Bot();
+            MemoryReaderFactory memoryReaderFactory = new MemoryReaderFactory();
+            Bot bot = new Bot(memoryReaderFactory);
             while (!bot.ShutdownRequested) bot.Run();
         }
     }

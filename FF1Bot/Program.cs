@@ -5,10 +5,7 @@
         private static void Main(string[] args)
         {
             Bot bot = new Bot();
-            while (!bot.ShutdownRequested)
-            {
-                bot.Run();
-            }
+            while (!bot.ShutdownRequested) bot.Run();
         }
     }
 }

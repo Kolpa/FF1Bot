@@ -1,0 +1,5 @@
+P1_HP: _mem.GetAdress(_game.MainModule.BaseAddress + 0x002ECF68, 0x10A);
+P2_HP: _mem.GetAdress(_game.MainModule.BaseAddress + 0x002ECF68, 0x14A);
+P3_HP: _mem.GetAdress(_game.MainModule.BaseAddress + 0x002ECF68, 0x18A);
+P4_HP: _mem.GetAdress(_game.MainModule.BaseAddress + 0x002ECF68, 0x1CA);
+YCOORD: _mem.GetAdress(_game.MainModule.BaseAddress + 0x002F0168, 0x28);

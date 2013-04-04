@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace FF1Bot
 {
+    public interface IMemoryReader
+    {
+        void Close();
+        int Read(IntPtr ptrBaseAdress, int iBytesToRead = 2);
+        IntPtr GetAdress(IntPtr ptrBaseAdress, uint uiOffset);
+        Process GetFocusProcess();
+    }
+
     public class MemoryReader : IMemoryReader
     {
         #region User32.dll Importe
@@ -15,6 +24,12 @@ namespace FF1Bot
 
         [DllImport("kernel32.dll")]
         private static extern bool CloseHandle(IntPtr hObject);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         #endregion
 
@@ -57,6 +72,14 @@ namespace FF1Bot
             uint uiFoundAdress = BitConverter.ToUInt32(baBuffer, 0);
             IntPtr ptrTargetAdress = (IntPtr) (uiFoundAdress + uiOffset);
             return ptrTargetAdress;
+        }
+
+        public Process GetFocusProcess()
+        {
+            int iFocusWindowProcessID;
+            GetWindowThreadProcessId(GetForegroundWindow(), out iFocusWindowProcessID);
+            Process focusProcess = Process.GetProcessById(iFocusWindowProcessID);
+            return focusProcess;
         }
 
         #endregion

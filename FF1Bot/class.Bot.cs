@@ -6,9 +6,7 @@ namespace FF1Bot
 {
     public class Bot
     {
-        private const string EmulatorProcessName = "fceux";
-
-        private readonly IMemoryReaderFactory _memoryReaderFactory;
+        private GameStage _gameStage;
 
         #region Private Properties
 
@@ -22,21 +20,25 @@ namespace FF1Bot
 
         public bool ShutdownRequested { get; private set; }
 
+        public GameStage GameStage
+        {
+            get { return _gameStage; }
+            set { _gameStage = value; }
+        }
+
         #endregion
 
         #region Constructors
 
-        public Bot(IMemoryReaderFactory memoryReaderFactory)
-        {
-            _memoryReaderFactory = memoryReaderFactory;
-            ShutdownRequested = false;
-        }
+        public Bot() { ShutdownRequested = false; }
 
         #endregion
 
         #region Public Methods
 
-        public void Run() { }
+        public void SetGameStage(GameStage gameStage) { GameStage = gameStage; }
+
+        public void Run() { GameStage.Run(); }
 
         #endregion
     }

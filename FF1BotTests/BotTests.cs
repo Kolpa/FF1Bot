@@ -1,13 +1,14 @@
 ﻿using FF1Bot;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace FF1BotTests
 {
     [TestClass]
-    public class FF1BotTests
+    public class BotTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Bot_Constructor_ShouldPass()
         {
             Bot bot = new Bot();
             Assert.IsNotNull(bot);

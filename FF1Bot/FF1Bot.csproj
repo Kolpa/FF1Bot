@@ -38,6 +38,9 @@
     <StartupObject>FF1Bot.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="InputSimulator">
+      <HintPath>..\InputSimulator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class.Bot.cs" />
+    <Compile Include="class.GameStages.cs" />
+    <Compile Include="class.MemoryReaderFactory.cs" />
     <Compile Include="IMemoryReader.cs" />
     <Compile Include="MemoryReader.cs" />
     <Compile Include="Program.cs" />
